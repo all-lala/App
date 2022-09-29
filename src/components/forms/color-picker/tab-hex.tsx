@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { hexToHsva, hsvaToHex } from '@uiw/color-convert';
 import { ChangeEvent } from 'react';
 import { TabsProps } from './tabs';
-import { TabInput } from './tab-input';
+import { TabInput } from '../../tabs/tab-input';
 
 export interface HexaColor {
   hex: string;
