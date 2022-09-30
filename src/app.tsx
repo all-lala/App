@@ -1,5 +1,5 @@
 import { Navbar } from './components/navbar/navbar';
-import { routes } from './router';
+import { embedRoutes, routes } from './router';
 import { navigation, noLayout } from './navigation';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useAuthCheck } from './hooks/auth/use-auth-check';
@@ -32,6 +32,9 @@ export const App = () => {
       >
         <Routes>
           <Route path={'/login'} element={<Login />} />
+          {embedRoutes.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
           <Route element={<Protected />}>
             {routes.map((route, index) => (
               <Route key={index} path={route.path} element={route.element} />
