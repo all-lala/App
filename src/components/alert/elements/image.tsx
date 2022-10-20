@@ -64,7 +64,7 @@ export const AlertImage = (props: AlertImageProps) => {
             data-x={posX}
             data-y={posY}
           >
-            <img src={settings.url} alt="img" className="h-full w-full object-cover" />
+            <img src={settings.url} alt="img" className="h-full w-full" />
           </div>
         </motion.div>
       )}
