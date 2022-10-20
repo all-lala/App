@@ -102,8 +102,7 @@ export const AlertThemeSchema = z.object({
     'goal_begin',
     'goal_end',
   ]),
-  width: z.number(),
-  height: z.number(),
+  size: z.string(),
   duration: z.number(),
   elements: AlertElementsSchema,
 });

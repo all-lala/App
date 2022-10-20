@@ -26,8 +26,7 @@ export const AlertCreate = () => {
     id: '1',
     title: 'Test new alert',
     type: 'subscribe',
-    width: 500,
-    height: 500,
+    size: '1 / 1',
     duration: 5000,
     elements: [],
     user_id: '1',
@@ -83,7 +82,7 @@ export const AlertCreate = () => {
   }, [watch, getValues]);
 
   return (
-    <div className="flex flex-col gap-10 p-10">
+    <div className="flex flex-col gap-5 p-10">
       <div className="flex gap-10">
         <div className="w-[350px] shrink-0">
           <AlertSettings
@@ -102,8 +101,7 @@ export const AlertCreate = () => {
         </div>
         <div className="flex-1">
           <AlertEditorContainer
-            width={settings.width as Pixels}
-            height={settings.height as Pixels}
+            size={settings.size}
             totalTime={settings.duration as Milliseconds}
             elements={elements}
             timestamp={timestamp}

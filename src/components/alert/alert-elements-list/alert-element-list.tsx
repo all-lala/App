@@ -51,7 +51,7 @@ export const AlertElementsList = (props: AlertElementsListProps) => {
   };
 
   return (
-    <div className="custom-scrollbar h-[300px] w-full overflow-y-auto rounded-xl bg-dark-600">
+    <div className="custom-scrollbar h-[200px] w-full overflow-y-auto rounded-xl bg-dark-600">
       <div>
         <Duration
           totalTime={totalTime}

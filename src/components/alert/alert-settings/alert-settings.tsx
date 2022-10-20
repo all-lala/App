@@ -1,9 +1,12 @@
 import { Control, Controller } from 'react-hook-form';
 import { Accordion } from '~/components/accordion/accordion';
 import { Button, ButtonColor } from '~/components/button/button';
+import { TabItem } from '~/components/chat/chat-settings/tab-item';
 import { Input } from '~/components/forms/input/input';
+import { Select } from '~/components/forms/select/select';
 import { Slider } from '~/components/forms/slider/slider';
 import { Icon } from '~/components/icon/icon';
+import { alertSize } from '~/utils/alert/alert-size';
 
 export interface AlertSettingsProps {
   className?: string;
@@ -24,8 +27,8 @@ export const AlertSettings = (props: AlertSettingsProps) => {
             Save
           </Button>
         </div>
-        <div className="custom-scrollbar h-[calc(100vh_-_488px)] overflow-y-auto rounded-2xl bg-dark-600 p-6">
-          <Accordion title="Title">
+        <div className="custom-scrollbar h-[calc(100vh_-_368px)] overflow-y-auto rounded-2xl bg-dark-600 p-6">
+          <TabItem title="Title">
             <Controller
               name="title"
               control={control}
@@ -42,44 +45,23 @@ export const AlertSettings = (props: AlertSettingsProps) => {
                 />
               )}
             />
-          </Accordion>
-          <Accordion title="Width">
+          </TabItem>
+          <TabItem title="Size">
             <Controller
-              name="width"
+              name="size"
               control={control}
-              defaultValue={500}
+              defaultValue={'1 / 1'}
               render={({ field: { onChange, value } }) => (
-                <Input
-                  defaultValue={value}
+                <Select
+                  defaultValue={alertSize.find((item) => item.value === value)}
+                  options={alertSize}
+                  onChange={(value) => onChange(value?.value)}
                   className="mb-3"
-                  type="number"
-                  onChange={(e) => {
-                    const target = e.target as HTMLInputElement;
-                    onChange(target.valueAsNumber);
-                  }}
                 />
               )}
             />
-          </Accordion>
-          <Accordion title="Height">
-            <Controller
-              name="height"
-              control={control}
-              defaultValue={500}
-              render={({ field: { onChange, value } }) => (
-                <Input
-                  defaultValue={value}
-                  className="mb-3"
-                  type="number"
-                  onChange={(e) => {
-                    const target = e.target as HTMLInputElement;
-                    onChange(target.valueAsNumber);
-                  }}
-                />
-              )}
-            />
-          </Accordion>
-          <Accordion title="Duration">
+          </TabItem>
+          <TabItem title="Duration">
             <Controller
               name="duration"
               control={control}
@@ -96,8 +78,8 @@ export const AlertSettings = (props: AlertSettingsProps) => {
                 />
               )}
             />
-          </Accordion>
-          <Accordion title="Elements">
+          </TabItem>
+          <TabItem title="Elements">
             <div className="grid grid-cols-3 gap-4">
               <button onClick={() => addElement('image')} type="button">
                 <div className="mb-2 flex h-20 items-center justify-center rounded-md bg-primary-100 py-3">
@@ -130,7 +112,7 @@ export const AlertSettings = (props: AlertSettingsProps) => {
                 <p className="text-sm font-medium">Audio</p>
               </button>
             </div>
-          </Accordion>
+          </TabItem>
         </div>
       </form>
     </div>

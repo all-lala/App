@@ -16,8 +16,6 @@ import type {
 } from '~/types/schemas/alert';
 
 export interface EditorProps {
-  width: Pixels;
-  height: Pixels;
   onElementMove?: (id: string, x: Pixels, y: Pixels) => void;
   onElementResize?: (id: string, width: Pixels, height: Pixels) => void;
   isHover?: (hover: boolean) => void;
@@ -25,6 +23,7 @@ export interface EditorProps {
   onElementClick?: (id: string) => void;
   zoom: number;
   timestamp: Milliseconds;
+  size: string;
 }
 
 function renderAlertElement(
@@ -120,8 +119,6 @@ function renderAlertElement(
 
 export const Editor = (props: EditorProps) => {
   const {
-    width,
-    height,
     onElementMove,
     onElementResize,
     isHover,
@@ -129,6 +126,7 @@ export const Editor = (props: EditorProps) => {
     onElementClick,
     zoom,
     timestamp,
+    size,
   } = props;
 
   const [shift, setShift] = useState<boolean>(false);
@@ -235,10 +233,12 @@ export const Editor = (props: EditorProps) => {
 
   return (
     <div
-      style={{ width, height }}
+      style={{ aspectRatio: size }}
       onMouseOver={() => isHover && isHover(true)}
       onMouseLeave={() => isHover && isHover(false)}
-      className="relative border-2 border-dark-300 bg-dark-400"
+      className={`relative border-2 border-dark-300 bg-dark-400 ${
+        size === '16 / 9' ? 'h-auto w-full max-w-[90%]' : 'h-full max-h-[90%] w-auto'
+      }`}
     >
       {elements.map((element) => (
         <div key={element.id} onClick={() => onElementClick?.(element.id)}>

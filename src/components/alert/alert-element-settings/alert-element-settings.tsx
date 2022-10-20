@@ -39,7 +39,7 @@ export const AlertElementSettings = memo(function AlertElementSettings(
   }
 
   return (
-    <div className="custom-scrollbar h-[524px] w-full overflow-y-auto rounded-2xl bg-dark-600 p-5">
+    <div className="custom-scrollbar h-[calc(100vh_-_300px)] w-full overflow-y-auto rounded-2xl bg-dark-600 p-5">
       <TabItem title="Title">
         <Input
           value={currentElement?.title}
