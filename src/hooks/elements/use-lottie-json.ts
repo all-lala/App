@@ -4,7 +4,7 @@ import { queryKeys } from '~/hooks/query-keys';
 
 export const useLottieJson = (url: string) => {
   return useQuery(
-    queryKeys.googleFont(),
+    queryKeys.lottie(url),
     async () => {
       const response = await axios.get(url);
 

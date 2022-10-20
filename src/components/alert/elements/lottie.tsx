@@ -32,33 +32,36 @@ export const AlertLottie = (props: AlertLottieProps) => {
 
   const animation = useRef<any>(null);
   const { data: animationData } = useLottieJson(settings.url);
-
   useEffect(() => {
-    if (animationData) {
+    if (animationData && animation) {
       animation.current?.play();
     }
   }, [settings]);
 
-  return (
-    <>
-      {timestamp >= start_time && timestamp <= start_time + duration && animationData && (
-        <Lottie
-          className={`absolute block ${
-            !lock &&
-            'draggable-alert transition-colors hover:outline hover:outline-1 hover:outline-white/30'
-          }`}
-          animationData={animationData}
-          lottieRef={animation}
-          style={{
-            width: width,
-            height: height,
-            transform: `translate(${posX}px, ${posY}px)`,
-          }}
-          data-x={posX}
-          data-y={posY}
-          data-id={id}
-        />
-      )}
-    </>
-  );
+  if (animationData) {
+    return (
+      <>
+        {timestamp >= start_time && timestamp <= start_time + duration && animationData && (
+          <Lottie
+            className={`absolute block ${
+              !lock &&
+              'draggable-alert transition-colors hover:outline hover:outline-1 hover:outline-white/30'
+            }`}
+            animationData={animationData}
+            lottieRef={animation}
+            style={{
+              width: width,
+              height: height,
+              transform: `translate(${posX}px, ${posY}px)`,
+            }}
+            data-x={posX}
+            data-y={posY}
+            data-id={id}
+          />
+        )}
+      </>
+    );
+  } else {
+    return <p>Loading...</p>;
+  }
 };
