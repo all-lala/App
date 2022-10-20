@@ -19,7 +19,7 @@ export interface AlertElementsListProps {
   onTimestampChange?: (timestamp: Milliseconds) => void;
 }
 
-export const AlertElementsList = (props: AlertElementsListProps) => {
+export const AlertElementsList = memo(function (props: AlertElementsListProps) {
   const {
     elements,
     totalTime,
@@ -32,24 +32,6 @@ export const AlertElementsList = (props: AlertElementsListProps) => {
     onTimestampChange,
   } = props;
 
-  const onDragEnd = (result: DropResult) => {
-    const { destination, source } = result;
-
-    if (!destination) {
-      return;
-    }
-
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
-      return;
-    }
-
-    const currentList = [...elements];
-    const elementToMove = currentList[source.index];
-    currentList.splice(source.index, 1);
-    currentList.splice(destination.index, 0, elementToMove);
-    onOrderChange && onOrderChange(currentList);
-  };
-
   return (
     <div className="custom-scrollbar h-[200px] w-full overflow-y-auto rounded-xl bg-dark-600">
       <div>
@@ -58,72 +40,67 @@ export const AlertElementsList = (props: AlertElementsListProps) => {
           onTimestampChange={(timestamp) => onTimestampChange?.(timestamp)}
         />
       </div>
-      <DragDropContext onDragEnd={(result: DropResult) => onDragEnd(result)}>
-        <Droppable droppableId="list">
-          {(providedDroppable) => (
+      <div className="flex flex-col gap-1">
+        <>
+          {[...elements].reverse().map((element, index) => (
             <div
-              className="flex flex-col gap-1"
-              ref={providedDroppable.innerRef}
-              {...providedDroppable.droppableProps}
+              key={element.id}
+              className="flex items-center gap-2 border-b border-dark-400 py-2 pl-4"
+              style={{ width: timeToPixel(totalTime) + 171 + 'px' }}
             >
-              <>
-                {[...elements].reverse().map((element, index) => (
-                  <Draggable draggableId={element.id} index={index} key={element.id}>
-                    {(providedDraggable) => (
-                      <div
-                        ref={providedDraggable.innerRef}
-                        {...providedDraggable.draggableProps}
-                        {...providedDraggable.dragHandleProps}
-                        className="flex items-center gap-2 border-b border-dark-400 py-2 pl-4"
-                        style={{ width: timeToPixel(totalTime) + 171 + 'px' }}
-                      >
-                        <div className="flex h-12 items-center gap-2">
-                          <Button
-                            buttonIcon="delete-bin-line"
-                            color={ButtonColor.Error}
-                            size={ButtonSize.Small}
-                            onClick={() => onDeleteElement && onDeleteElement(element.id)}
-                          />
-                          <Button
-                            buttonIcon="menu-5-line"
-                            color={ButtonColor.Dark}
-                            size={ButtonSize.Small}
-                            type="button"
-                          />
-                          <Color
-                            haveInput={false}
-                            value={element.color}
-                            onColorChange={(value) =>
-                              onColorChange && onColorChange(element.id, value)
-                            }
-                          />
-                        </div>
-                        <Timeline
-                          type={element.type}
-                          id={element.id}
-                          title={element.title}
-                          totalTime={totalTime}
-                          color={element.color}
-                          duration={element.duration as Milliseconds}
-                          startTime={element.start_time as Milliseconds}
-                          onElementMove={(startTime) =>
-                            onStartChange && onStartChange(element.id, startTime)
-                          }
-                          onElementResize={(duration) =>
-                            onDurationChange && onDurationChange(element.id, duration)
-                          }
-                          onClick={() => onElementClick && onElementClick(element.id)}
-                        />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              </>
-              {providedDroppable.placeholder}
+              <div className="flex h-12 items-center gap-2">
+                <Button
+                  buttonIcon="delete-bin-line"
+                  color={ButtonColor.Error}
+                  size={ButtonSize.Small}
+                  onClick={() => onDeleteElement && onDeleteElement(element.id)}
+                />
+                <Button
+                  buttonIcon="arrow-up-s-line"
+                  color={ButtonColor.Dark}
+                  size={ButtonSize.Small}
+                  type="button"
+                  onClick={() => {
+                    const newElements = [...elements];
+                    newElements.splice(index - 1, 0, newElements.splice(index, 1)[0]);
+                    onOrderChange?.(newElements);
+                  }}
+                />
+                <Button
+                  buttonIcon="arrow-down-s-line"
+                  color={ButtonColor.Dark}
+                  size={ButtonSize.Small}
+                  type="button"
+                  onClick={() => {
+                    const newElements = [...elements];
+                    newElements.splice(index + 1, 0, newElements.splice(index, 1)[0]);
+                    onOrderChange?.(newElements);
+                  }}
+                />
+                <Color
+                  haveInput={false}
+                  value={element.color}
+                  onColorChange={(value) => onColorChange && onColorChange(element.id, value)}
+                />
+              </div>
+              <Timeline
+                type={element.type}
+                id={element.id}
+                title={element.title}
+                totalTime={totalTime}
+                color={element.color}
+                duration={element.duration as Milliseconds}
+                startTime={element.start_time as Milliseconds}
+                onElementMove={(startTime) => onStartChange && onStartChange(element.id, startTime)}
+                onElementResize={(duration) =>
+                  onDurationChange && onDurationChange(element.id, duration)
+                }
+                onClick={() => onElementClick && onElementClick(element.id)}
+              />
             </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+          ))}
+        </>
+      </div>
     </div>
   );
-};
+});

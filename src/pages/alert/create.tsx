@@ -201,6 +201,7 @@ export const AlertCreate = () => {
           onElementClick={(id) => {
             setSelectedElement(id);
           }}
+          onOrderChange={(newOrder) => setElements(newOrder)}
           onTimestampChange={setTimestamp}
         />
       </div>

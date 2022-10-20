@@ -55,7 +55,7 @@ export const AlertText = (props: AlertTextProps) => {
         },
       });
     })();
-  }, [settings]);
+  }, [settings, posX, posY]);
 
   return (
     <AnimatePresence>
@@ -72,6 +72,7 @@ export const AlertText = (props: AlertTextProps) => {
             width: width,
             height: height,
             transform: `translate(${posX}px, ${posY}px)`,
+            display: 'block',
             fontFamily: settings.text.fontFamily,
             fontSize: settings.text.fontSize + 'px',
             fontWeight: settings.text.fontWeight,

@@ -21,7 +21,7 @@ export const Duration = (props: DurationProps) => {
 
   return (
     <div
-      className="relative ml-[162px] h-4 overflow-hidden bg-transparent"
+      className="relative ml-[208px] h-4 overflow-hidden bg-transparent"
       style={{ width: timeToPixel(totalTime) + 1 }}
     >
       <div className="absolute top-0 left-0 w-full">
