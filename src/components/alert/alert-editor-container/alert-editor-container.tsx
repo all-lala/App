@@ -20,7 +20,6 @@ export const AlertEditorContainer = (props: AlertEditorContainerProps) => {
     props;
 
   const [isHover, setIsHover] = useState<boolean>(false);
-  const [zoom, setZoom] = useState<number>(0.5);
   const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false);
 
   return (
@@ -55,7 +54,6 @@ export const AlertEditorContainer = (props: AlertEditorContainerProps) => {
         onElementMove={onElementMove}
         onElementResize={onElementResize}
         onElementClick={onElementClick}
-        zoom={zoom}
       />
     </div>
   );

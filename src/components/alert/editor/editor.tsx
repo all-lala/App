@@ -21,7 +21,6 @@ export interface EditorProps {
   isHover?: (hover: boolean) => void;
   elements: AlertElements;
   onElementClick?: (id: string) => void;
-  zoom: number;
   timestamp: Milliseconds;
   size: string;
 }
@@ -118,16 +117,8 @@ function renderAlertElement(
 }
 
 export const Editor = (props: EditorProps) => {
-  const {
-    onElementMove,
-    onElementResize,
-    isHover,
-    elements,
-    onElementClick,
-    zoom,
-    timestamp,
-    size,
-  } = props;
+  const { onElementMove, onElementResize, isHover, elements, onElementClick, timestamp, size } =
+    props;
 
   const [shift, setShift] = useState<boolean>(false);
 
@@ -198,8 +189,8 @@ export const Editor = (props: EditorProps) => {
     const id = target.getAttribute('data-id');
 
     if (dataX && dataY && id) {
-      const x = (parseFloat(dataX) || 0) + event.dx / zoom;
-      const y = (parseFloat(dataY) || 0) + event.dy / zoom;
+      const x = (parseFloat(dataX) || 0) + event.dx;
+      const y = (parseFloat(dataY) || 0) + event.dy;
       target.style.transform = `translate(${x}px, ${y}px)`;
       target.setAttribute('data-x', x.toString());
       target.setAttribute('data-y', y.toString());
