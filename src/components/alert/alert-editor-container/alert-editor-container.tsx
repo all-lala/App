@@ -4,6 +4,7 @@ import { Button, ButtonColor, ButtonSize } from '~/components/button/button';
 import { Modal } from '~/components/modal/modal';
 import type { AlertElements } from '~/types/schemas/alert';
 import type { Milliseconds, Pixels } from '~/types/types/custom';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 export interface AlertEditorContainerProps {
   size: string;
@@ -20,10 +21,11 @@ export const AlertEditorContainer = (props: AlertEditorContainerProps) => {
     props;
 
   const [isHover, setIsHover] = useState<boolean>(false);
+  const [zoom, setZoom] = useState<number>(0.5);
   const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false);
 
   return (
-    <div className="relative flex h-[calc(100vh_-_300px)] items-center justify-center overflow-hidden rounded-2xl bg-black">
+    <div className="relative h-[calc(100vh_-_300px)] overflow-hidden rounded-2xl bg-black">
       <Modal
         trigger={
           <Button
@@ -46,15 +48,28 @@ export const AlertEditorContainer = (props: AlertEditorContainerProps) => {
         />
       </Modal>
 
-      <Editor
-        size={size}
-        timestamp={timestamp}
-        isHover={(hover) => setIsHover(hover)}
-        elements={elements}
-        onElementMove={onElementMove}
-        onElementResize={onElementResize}
-        onElementClick={onElementClick}
-      />
+      <TransformWrapper
+        initialScale={0.5}
+        minScale={0.2}
+        maxScale={10}
+        centerOnInit
+        onZoom={(ref) => setZoom(ref.state.scale)}
+        limitToBounds={false}
+        panning={{ disabled: isHover }}
+      >
+        <TransformComponent wrapperClass="!w-full !h-full">
+          <Editor
+            size={size}
+            timestamp={timestamp}
+            isHover={(hover) => setIsHover(hover)}
+            elements={elements}
+            onElementMove={onElementMove}
+            onElementResize={onElementResize}
+            onElementClick={onElementClick}
+            zoom={zoom}
+          />
+        </TransformComponent>
+      </TransformWrapper>
     </div>
   );
 };

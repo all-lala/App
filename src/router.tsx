@@ -1,4 +1,5 @@
 import { AlertCreate } from '~/pages/alert/create';
+import { AlertEdit } from '~/pages/alert/edit';
 import { ChatCreate } from '~/pages/chat/create';
 import { ChatEdit } from '~/pages/chat/edit';
 import { ChatEmbed } from '~/pages/chat/embed';
@@ -28,6 +29,10 @@ export const alertRoutes: RouteObject[] = [
   {
     path: '/alert/create',
     element: <AlertCreate />,
+  },
+  {
+    path: '/alert/:id/edit',
+    element: <AlertEdit />,
   },
 ];
 

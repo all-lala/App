@@ -23,6 +23,7 @@ export interface EditorProps {
   onElementClick?: (id: string) => void;
   timestamp: Milliseconds;
   size: string;
+  zoom: number;
 }
 
 function renderAlertElement(
@@ -117,8 +118,16 @@ function renderAlertElement(
 }
 
 export const Editor = (props: EditorProps) => {
-  const { onElementMove, onElementResize, isHover, elements, onElementClick, timestamp, size } =
-    props;
+  const {
+    onElementMove,
+    onElementResize,
+    isHover,
+    elements,
+    onElementClick,
+    timestamp,
+    size,
+    zoom,
+  } = props;
 
   const [shift, setShift] = useState<boolean>(false);
 
@@ -189,8 +198,8 @@ export const Editor = (props: EditorProps) => {
     const id = target.getAttribute('data-id');
 
     if (dataX && dataY && id) {
-      const x = (parseFloat(dataX) || 0) + event.dx;
-      const y = (parseFloat(dataY) || 0) + event.dy;
+      const x = (parseFloat(dataX) || 0) + event.dx / zoom;
+      const y = (parseFloat(dataY) || 0) + event.dy / zoom;
       target.style.transform = `translate(${x}px, ${y}px)`;
       target.setAttribute('data-x', x.toString());
       target.setAttribute('data-y', y.toString());
@@ -224,12 +233,10 @@ export const Editor = (props: EditorProps) => {
 
   return (
     <div
-      style={{ aspectRatio: size }}
+      style={{ aspectRatio: size, width: '1080px', height: '1080px' }}
       onMouseOver={() => isHover && isHover(true)}
       onMouseLeave={() => isHover && isHover(false)}
-      className={`relative border-2 border-dark-300 bg-dark-400 ${
-        size === '16 / 9' ? 'h-auto w-full max-w-[90%]' : 'h-full max-h-[90%] w-auto'
-      }`}
+      className={`absolute border-2 border-dark-300 bg-dark-400`}
     >
       {elements.map((element) => (
         <div key={element.id} onClick={() => onElementClick?.(element.id)}>
