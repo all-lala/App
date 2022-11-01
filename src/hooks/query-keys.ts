@@ -1,10 +1,24 @@
+export const authKeys = {
+  root: ['auth'],
+  user: () => [...authKeys.root, 'user'],
+  check: () => [...authKeys.root, 'check'],
+} as const;
+
+export const chatKeys = {
+  root: ['chat'],
+  lists: () => [...chatKeys.root, 'lists'],
+  details: () => [...chatKeys.root, 'details'],
+  detail: (id: string) => [...chatKeys.details(), id],
+} as const;
+
+export const alertKeys = {
+  root: ['alert'],
+  lists: () => [...alertKeys.root, 'lists'],
+  details: () => [...alertKeys.root, 'details'],
+  detail: (id: string) => [...alertKeys.details(), id],
+} as const;
+
 export const queryKeys = {
-  authCheck: () => ['authCheck'],
-  authUser: () => ['authUser'],
-  googleFont: () => ['googleFont'],
-  chat: (id?: string) => ['chat', id],
-  chats: () => ['chats'],
   lottie: (url?: string) => ['lottie', url],
-  alert: (id?: string) => ['alert', id],
-  alerts: () => ['alerts'],
-};
+  googleFont: () => ['googleFont'],
+} as const;

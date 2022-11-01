@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { queryKeys } from '~/hooks/query-keys';
+import { authKeys } from '~/hooks/query-keys';
 import { apiClient } from '~/utils/axios/axios';
 
 export function useLogout() {
@@ -11,8 +11,8 @@ export function useLogout() {
     },
     {
       onSuccess() {
-        void queryClient.invalidateQueries(queryKeys.authCheck());
-        void queryClient.setQueryData(queryKeys.authUser(), null);
+        void queryClient.invalidateQueries(authKeys.root);
+        void queryClient.setQueryData(authKeys.user(), null);
       },
     }
   );

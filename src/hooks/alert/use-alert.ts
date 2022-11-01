@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import * as z from 'zod';
-import { queryKeys } from '~/hooks/query-keys';
+import { alertKeys } from '~/hooks/query-keys';
 import { AlertThemeSchema } from '~/types/schemas/alert';
 import { apiClient } from '~/utils/axios/axios';
 
 export const useAlert = (alertId: string) => {
   return useQuery(
-    queryKeys.alert(alertId),
+    alertKeys.detail(alertId),
     async () => {
       const { data } = await apiClient.get(`/alerts/${alertId}`);
 

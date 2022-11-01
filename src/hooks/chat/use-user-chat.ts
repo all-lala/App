@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { queryKeys } from '~/hooks/query-keys';
+import { chatKeys } from '~/hooks/query-keys';
 import { ChatTheme } from '~/types/schemas/chat';
 import { apiClient } from '~/utils/axios/axios';
 
@@ -11,7 +11,7 @@ export interface UseUserChatThemes {
 
 export const useUserChat = () => {
   return useQuery(
-    queryKeys.chats(),
+    chatKeys.lists(),
     async () => {
       const { data } = await apiClient.get('/chat-themes');
 

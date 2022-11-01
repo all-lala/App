@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toastr, ToastType } from '~/components/toast/toast';
-import { queryKeys } from '~/hooks/query-keys';
+import { chatKeys } from '~/hooks/query-keys';
 import { apiClient } from '~/utils/axios/axios';
 
 export const useDeleteChat = () => {
@@ -14,8 +14,8 @@ export const useDeleteChat = () => {
     },
     {
       onSuccess(_, id) {
-        void queryClient.invalidateQueries(queryKeys.chats());
-        void queryClient.removeQueries(queryKeys.chat(id));
+        void queryClient.invalidateQueries(chatKeys.lists());
+        void queryClient.removeQueries(chatKeys.detail(id));
       },
     }
   );

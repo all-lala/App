@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toastr, ToastType } from '~/components/toast/toast';
-import { queryKeys } from '~/hooks/query-keys';
+import { chatKeys } from '~/hooks/query-keys';
 import { ChatTheme } from '~/types/schemas/chat';
 import { apiClient } from '~/utils/axios/axios';
 
@@ -21,8 +21,8 @@ export const useUpdateChat = () => {
     },
     {
       onSuccess(_, params) {
-        void queryClient.invalidateQueries(queryKeys.chat(params.id));
-        void queryClient.invalidateQueries(queryKeys.chats());
+        void queryClient.invalidateQueries(chatKeys.detail(params.id));
+        void queryClient.invalidateQueries(chatKeys.lists());
       },
     }
   );

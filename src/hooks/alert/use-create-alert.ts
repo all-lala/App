@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toastr, ToastType } from '~/components/toast/toast';
-import { queryKeys } from '~/hooks/query-keys';
+import { alertKeys } from '~/hooks/query-keys';
 import { apiClient } from '~/utils/axios/axios';
 
 export function useCreateAlert() {
@@ -20,7 +20,7 @@ export function useCreateAlert() {
     },
     {
       onSuccess() {
-        void queryClient.invalidateQueries(queryKeys.alerts());
+        void queryClient.invalidateQueries(alertKeys.lists());
       },
     }
   );

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toastr, ToastType } from '~/components/toast/toast';
-import { queryKeys } from '~/hooks/query-keys';
+import { chatKeys } from '~/hooks/query-keys';
 import { ChatTheme } from '~/types/schemas/chat';
 import { apiClient } from '~/utils/axios/axios';
 
@@ -21,7 +21,7 @@ export function useCreateChat() {
     },
     {
       onSuccess() {
-        void queryClient.invalidateQueries(queryKeys.chats());
+        void queryClient.invalidateQueries(chatKeys.lists());
       },
     }
   );
