@@ -10,15 +10,13 @@ export interface UseUserChatThemes {
 }
 
 export const useUserChat = () => {
-  return useQuery(
-    chatKeys.lists(),
-    async () => {
+  return useQuery({
+    queryKey: chatKeys.lists(),
+    queryFn: async () => {
       const { data } = await apiClient.get('/chat-themes');
 
       return data;
     },
-    {
-      staleTime: Infinity,
-    }
-  );
+    staleTime: Infinity,
+  });
 };

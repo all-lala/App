@@ -5,9 +5,9 @@ import { ChatThemeSchema } from '~/types/schemas/chat';
 import { apiClient } from '~/utils/axios/axios';
 
 export const useChat = (themeId: string) => {
-  return useQuery(
-    chatKeys.detail(themeId),
-    async () => {
+  return useQuery({
+    queryKey: chatKeys.detail(themeId),
+    queryFn: async () => {
       const { data } = await apiClient.get(`/chat-themes/${themeId}`);
 
       if (!data) {
@@ -22,8 +22,6 @@ export const useChat = (themeId: string) => {
 
       return ChatThemeSchema.merge(userEmbedSchema).parse(data);
     },
-    {
-      staleTime: Infinity,
-    }
-  );
+    staleTime: Infinity,
+  });
 };

@@ -4,15 +4,13 @@ import { AuthUserSchema } from '~/types/schemas/auth';
 import { apiClient } from '~/utils/axios/axios';
 
 export function useAuthUser() {
-  return useQuery(
-    authKeys.user(),
-    async () => {
+  return useQuery({
+    queryKey: authKeys.user(),
+    queryFn: async () => {
       const response = await apiClient.get('/me');
 
       return AuthUserSchema.parse(response.data);
     },
-    {
-      staleTime: Infinity,
-    }
-  );
+    staleTime: Infinity,
+  });
 }

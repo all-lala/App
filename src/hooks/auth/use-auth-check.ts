@@ -4,15 +4,13 @@ import { AuthCheckSchema } from '~/types/schemas/auth';
 import { apiClient } from '~/utils/axios/axios';
 
 export const useAuthCheck = () => {
-  return useQuery(
-    authKeys.check(),
-    async () => {
+  return useQuery({
+    queryKey: authKeys.check(),
+    queryFn: async () => {
       const response = await apiClient.get('/auth/check');
 
       return AuthCheckSchema.parse(response.data);
     },
-    {
-      staleTime: Infinity,
-    }
-  );
+    staleTime: Infinity,
+  });
 };

@@ -20,9 +20,9 @@ export interface UseGoogleFonts {
 }
 
 export const useGoogleFont = () => {
-  return useQuery(
-    queryKeys.googleFont(),
-    async () => {
+  return useQuery({
+    queryKey: queryKeys.googleFont(),
+    queryFn: async () => {
       const response = await axios.get(
         `https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=${
           import.meta.env.VITE_GOOGLE_FONTS_API_KEY
@@ -31,8 +31,6 @@ export const useGoogleFont = () => {
 
       return response.data.items;
     },
-    {
-      staleTime: Infinity,
-    }
-  );
+    staleTime: Infinity,
+  });
 };

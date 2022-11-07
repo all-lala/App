@@ -3640,6 +3640,11 @@
     regenerator-runtime "^0.13.7"
     resolve-from "^5.0.0"
 
+"@tanstack/eslint-plugin-query@^4.14.4":
+  version "4.14.4"
+  resolved "https://registry.yarnpkg.com/@tanstack/eslint-plugin-query/-/eslint-plugin-query-4.14.4.tgz#da340b12ce0192b322d74c87725c6bc7e9e6797e"
+  integrity sha512-nKk48GmBgtuKiAU19znuHMy/6CcfFvi1eUrNe/7rpoCQ0qJdWIpkslYrOOr65HRR1WizGJmhbafxV8Gl9xN0kQ==
+
 "@tanstack/match-sorter-utils@^8.1.1":
   version "8.1.1"
   resolved "https://registry.npmjs.org/@tanstack/match-sorter-utils/-/match-sorter-utils-8.1.1.tgz"
