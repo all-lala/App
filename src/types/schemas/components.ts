@@ -59,10 +59,19 @@ export const SpacingSchema = z.object({
 
 export type SpacingType = z.infer<typeof SpacingSchema>;
 
+export const Position = {
+  left: 'left',
+  right: 'right',
+} as const;
+
+export const BadgeStyle = {
+  twitch: 'twitch',
+} as const;
+
 export const BadgesSchema = z.object({
   enabled: z.boolean(),
-  position: z.enum(['left', 'right']),
-  style: z.enum(['twitch']),
+  position: z.nativeEnum(Position),
+  style: z.nativeEnum(BadgeStyle),
   size: z.number(),
   space: z.number(),
   space_between: z.number(),

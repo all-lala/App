@@ -10,10 +10,21 @@ import {
   BorderSettingsSchema,
 } from './components';
 
+export const ChatAlignment = {
+  left: 'left',
+  center: 'center',
+  right: 'right',
+} as const;
+
+export const ChatLayout = {
+  stack: 'stack',
+  inline: 'inline',
+} as const;
+
 export const ChatThemeGlobalSchema = z.object({
   space_between_messages: z.number(),
-  alignment: z.enum(['left', 'center', 'right']),
-  layout: z.enum(['stack', 'inline']),
+  alignment: z.nativeEnum(ChatAlignment),
+  layout: z.nativeEnum(ChatLayout),
   order: OrderSchema,
   animation: z.string(),
 });

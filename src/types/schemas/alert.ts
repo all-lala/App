@@ -8,8 +8,16 @@ import {
 } from './components';
 import type { Milliseconds, Pixels } from '~/types/types/custom';
 
+const AlertElementType = {
+  Text: 'text',
+  Image: 'image',
+  Video: 'video',
+  Audio: 'audio',
+  Lottie: 'lottie',
+} as const;
+
 export const AlertElementGlobalSchema = z.object({
-  type: z.enum(['text', 'image', 'video', 'lottie', 'audio']),
+  type: z.nativeEnum(AlertElementType),
   id: z.string(),
   title: z.string(),
   color: z.string(),
