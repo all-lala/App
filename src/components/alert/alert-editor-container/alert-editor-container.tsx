@@ -1,10 +1,10 @@
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { AlertViewer } from '~/components/alert/alert-viewer/alert-viewer';
 import { Editor } from '~/components/alert/editor/editor';
 import { Button, ButtonColor, ButtonSize } from '~/components/button/button';
 import { Modal } from '~/components/modal/modal';
 import type { AlertElements } from '~/types/schemas/alert';
 import type { Milliseconds, Pixels } from '~/types/types/custom';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 export interface AlertEditorContainerProps {
   size: string;
