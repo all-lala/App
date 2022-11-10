@@ -1,18 +1,9 @@
-export const navigation = [
+import type { NavigationItems } from '~/components/navbar/navbar';
+
+export const navigation: NavigationItems = [
   {
     icon: 'chat-1-line',
-    items: [
-      {
-        title: 'Create chat theme',
-        icon: 'add-line',
-        link: '/chat/create',
-      },
-      {
-        title: 'My chat themes',
-        icon: 'book-2-line',
-        link: '/chat/library',
-      },
-    ],
+    link: '/chat/library',
   },
   {
     icon: 'alarm-warning-line',

@@ -7,18 +7,20 @@ import { Popover } from '~/components/popover/popover';
 import { useAuthUser } from '~/hooks/auth/use-auth-user';
 import { useLogout } from '~/hooks/auth/use-logout';
 
-type NavigationItem = {
+export type NavigationItem = {
   icon: string;
   link: string;
 };
 
-type PopoverNavigationItem = {
+export type PopoverNavigationItem = {
   icon: string;
   items: PopoverLink[];
 };
 
+export type NavigationItems = Array<NavigationItem | PopoverNavigationItem>;
+
 export interface NavbarProps {
-  navigation: Array<NavigationItem | PopoverNavigationItem>;
+  navigation: NavigationItems;
 }
 
 function renderItem(item: NavigationItem | PopoverNavigationItem, index: number) {
