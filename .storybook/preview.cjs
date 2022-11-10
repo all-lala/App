@@ -1,5 +1,5 @@
 import '../src/main.scss';
-import { withDecorator } from './decorators'
+import { withDecorator } from './decorators';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -18,10 +18,10 @@ export const parameters = {
       },
       {
         name: 'white',
-        value: '#fff'
-      }
+        value: '#fff',
+      },
     ],
   },
 };
 
-export const decorators = [withDecorator]
+export const decorators = [withDecorator];
