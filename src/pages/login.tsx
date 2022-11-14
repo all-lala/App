@@ -22,7 +22,11 @@ export const Login = () => {
         <br />
         visual editor
       </h1>
-      <Button link={'http://localhost:3333/oauth/twitch/redirect'} iconLeft="twitch-fill" external>
+      <Button
+        link={`${import.meta.env.VITE_API_URL}/oauth/twitch/redirect`}
+        iconLeft="twitch-fill"
+        external
+      >
         Login with Twitch
       </Button>
     </div>
