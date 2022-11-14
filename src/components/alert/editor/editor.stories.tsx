@@ -10,7 +10,4 @@ export default {
 const Template: ComponentStory<typeof Editor> = (args) => <Editor {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  width: 500 as Pixels,
-  height: 500 as Pixels,
-};
+Primary.args = {};
