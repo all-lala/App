@@ -43,4 +43,4 @@ export const embedRoutes: RouteObject[] = [
   },
 ];
 
-export const routes: RouteObject[] = [...chatRouter, ...alertRoutes];
+export const routes: RouteObject[] = [...chatRouter /*...alertRoutes*/];
