@@ -8,11 +8,28 @@ import { useOnline } from '~/hooks/layouts/use-online';
 import { navigation, noLayout } from '~/navigation';
 import { Login } from '~/pages/login';
 import { embedRoutes, routes } from '~/router';
+import LogRocket from 'logrocket';
+import { useAuthUser } from './hooks/auth/use-auth-user';
 
 export const App = () => {
   const { status } = useAuthCheck();
   const location = useLocation();
   const online = useOnline();
+  const { data: user } = useAuthUser();
+
+  useEffect(() => {
+    if (
+      !noLayout.some((path) => location.pathname.includes(path)) &&
+      status === 'success' &&
+      user &&
+      import.meta.env.PROD
+    ) {
+      LogRocket.identify(import.meta.env.LOGROCKET_APP_ID, {
+        email: user.email,
+        name: user.username,
+      });
+    }
+  }, []);
 
   if (status === 'loading') {
     return <div>Loading...</div>;
