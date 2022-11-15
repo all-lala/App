@@ -22,12 +22,10 @@ export const App = () => {
       !noLayout.some((path) => location.pathname.includes(path)) &&
       status === 'success' &&
       user &&
-      import.meta.env.PROD
+      import.meta.env.DEV
     ) {
-      LogRocket.identify(import.meta.env.LOGROCKET_APP_ID, {
-        email: user.email,
-        name: user.username,
-      });
+      LogRocket.identify(user.id, user);
+      LogRocket.init(import.meta.env.LOGROCKET_APP_ID);
     }
   }, []);
 
