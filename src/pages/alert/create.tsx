@@ -26,7 +26,7 @@ export function AlertCreate() {
       { title: alertTitle, type: parseInt(alertType?.value as string) },
       {
         onSuccess: (result) => {
-          navigate(`/alert/${result.id}/edit`);
+          navigate(`/alerts/${result.id}/edit`);
         },
       }
     );

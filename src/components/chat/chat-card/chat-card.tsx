@@ -57,14 +57,14 @@ export const ChatCard = (props: ChatCardProps) => {
             links={[
               {
                 title: 'Edit',
-                link: `/chat/${theme.id}/edit`,
+                link: `/chats/${theme.id}/edit`,
                 icon: 'edit-box-line',
               },
               {
                 title: 'Embed',
                 onClick: () => {
                   navigator.clipboard.writeText(
-                    `${window.location.origin.toString()}/chat/${theme.id}/embed`
+                    `${window.location.origin.toString()}/chats/${theme.id}/embed`
                   );
                   toastr(
                     ToastType.Success,

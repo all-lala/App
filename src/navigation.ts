@@ -3,7 +3,7 @@ import type { NavigationItems } from '~/components/navbar/navbar';
 export const navigation: NavigationItems = [
   {
     icon: 'chat-1-line',
-    link: '/chat/library',
+    link: '/chats',
   },
   // {
   //   icon: 'alarm-warning-line',
@@ -11,7 +11,7 @@ export const navigation: NavigationItems = [
   //     {
   //       title: 'Create alert',
   //       icon: 'add-line',
-  //       link: '/alert/create',
+  //       link: '/alerts/create',
   //     },
   //   ],
   // },

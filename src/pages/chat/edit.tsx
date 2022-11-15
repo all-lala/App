@@ -35,7 +35,7 @@ export const ChatEdit = () => {
   const handleSubmit = (theme: FieldValues) => {
     updateChat(theme as ChatTheme, {
       onSuccess: () => {
-        navigate('/chat/library');
+        navigate('/chats');
       },
     });
   };

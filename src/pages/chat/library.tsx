@@ -15,7 +15,7 @@ export const ChatLibrary = () => {
   const handleSubmit = (theme: FieldValues) => {
     createChat(theme.import as ChatTheme, {
       onSuccess: () => {
-        navigate('/chat/library');
+        navigate('/chats');
       },
     });
   };
@@ -36,7 +36,7 @@ export const ChatLibrary = () => {
             schema={ChatExportThemeSchema}
             onSave={handleSubmit}
           />
-          <Button iconLeft="add-line" link="/chat/create">
+          <Button iconLeft="add-line" link="/chats/create">
             Create theme
           </Button>
         </div>
@@ -55,7 +55,7 @@ export const ChatLibrary = () => {
       {(!data || data.length === 0) && (
         <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4">
           <h2 className="text-2xl font-medium">No themes found 🥲</h2>
-          <Button iconLeft="add-line" link="/chat/create">
+          <Button iconLeft="add-line" link="/chats/create">
             Create chat theme
           </Button>
         </div>

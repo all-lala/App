@@ -93,7 +93,7 @@ export const AlertEdit = () => {
       {
         onSuccess: (result) => {
           console.log(result);
-          //navigate(`/alert/${result.id}/edit`);
+          //navigate(`/alerts/${result.id}/edit`);
         },
       }
     );

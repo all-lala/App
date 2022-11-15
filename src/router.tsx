@@ -12,33 +12,33 @@ export const chatRouter: RouteObject[] = [
     element: <ChatLibrary />,
   },
   {
-    path: '/chat/create',
+    path: '/chats/create',
     element: <ChatCreate />,
   },
   {
-    path: '/chat/library',
+    path: '/chats',
     element: <ChatLibrary />,
   },
   {
-    path: '/chat/:id/edit',
+    path: '/chats/:id/edit',
     element: <ChatEdit />,
   },
 ];
 
 export const alertRoutes: RouteObject[] = [
   {
-    path: '/alert/create',
+    path: '/alerts/create',
     element: <AlertCreate />,
   },
   {
-    path: '/alert/:id/edit',
+    path: '/alerts/:id/edit',
     element: <AlertEdit />,
   },
 ];
 
 export const embedRoutes: RouteObject[] = [
   {
-    path: '/chat/:id/embed',
+    path: '/chats/:id/embed',
     element: <ChatEmbed />,
   },
 ];
