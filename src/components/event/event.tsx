@@ -36,30 +36,30 @@ const EventTypeText: Record<typeof EventType[keyof typeof EventType], string> = 
 const EventTypeMessage = {
   [EventType.Follow]: (event: FollowEvent) => (
     <p>
-      <strong className="font-bold">{event.displayName}</strong> as followed you.
+      <strong className="font-bold">{event.displayName}</strong> followed you.
     </p>
   ),
   [EventType.Cheer]: (event: CheerEvent) => (
     <p>
       <strong className="font-bold">{event.isAnonymous ? 'Anonymous' : event.displayName}</strong>{' '}
-      as cheered <strong>{event.bits} bits</strong>.
+      cheered <strong>{event.bits} bits</strong>.
     </p>
   ),
   [EventType.Subscribe]: (event: SubscribeEvent) => (
     <p>
-      <strong className="font-bold">{event.displayName}</strong> as subscribed to you with{' '}
+      <strong className="font-bold">{event.displayName}</strong> subscribed with{' '}
       <strong>{SubscribeTierToText(event.tier)} tier</strong>.
     </p>
   ),
   [EventType.SubscriptionGift]: (event: SubscriptionGiftEvent) => (
     <p>
       <strong className="font-bold">{event.isAnonymous ? 'Anonymous' : event.displayName}</strong>{' '}
-      as gifted <strong>{event.total}</strong> subs to you.
+      gifted <strong>{event.total}</strong> subs.
     </p>
   ),
   [EventType.Raid]: (event: RaidEvent) => (
     <p>
-      <strong className="font-bold">{event.displayName}</strong> as raided you with{' '}
+      <strong className="font-bold">{event.displayName}</strong> raided you with{' '}
       <strong>{event.viewers}</strong> viewers.
     </p>
   ),
