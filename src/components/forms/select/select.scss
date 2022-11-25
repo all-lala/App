@@ -2,7 +2,7 @@
   background-color: theme('colors.dark.400') !important;
   border-color: transparent !important;
   border-radius: theme('borderRadius.lg') !important;
-  height: theme('spacing.10') !important;
+  min-height: theme('spacing.10') !important;
 
   &--is-focused {
     border-color: theme('colors.primary.500') !important;
@@ -121,6 +121,11 @@
 
 // Multiple
 
+.select__value-container--is-multi {
+  height: auto;
+  padding: 4px !important;
+}
+
 .select-multiple {
   .select__value-container {
     padding: 2px theme('spacing.1') !important;
@@ -139,6 +144,7 @@
   background-color: theme('colors.primary.500') !important;
   height: theme('spacing.6') !important;
   align-items: center;
+  padding-right: 2px !important;
 }
 
 .select__multi-value__label {
@@ -153,5 +159,19 @@
 .select--disabled {
   .select__control {
     background-color: theme('colors.dark.400') !important;
+  }
+}
+
+.select__multi-value__remove {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2px !important;
+
+  &:hover {
+    background-color: theme('colors.primary.400') !important;
+    color: theme('colors.white') !important;
   }
 }

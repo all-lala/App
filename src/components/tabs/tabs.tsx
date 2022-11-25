@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 
 export interface TabsProps {
   content: TabProps[];
+  className?: string;
 }
 
 export interface TabProps {
@@ -13,7 +14,7 @@ export interface TabProps {
 }
 
 export const Tabs = (props: TabsProps) => {
-  const { content } = props;
+  const { content, className = '' } = props;
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const handleChange = (selectedIndex: number) => {
@@ -24,7 +25,7 @@ export const Tabs = (props: TabsProps) => {
 
   return (
     <TabsLib.Root defaultValue="tab-0">
-      <TabsLib.List className="mb-3 flex gap-2 rounded-2xl bg-dark-600 p-2">
+      <TabsLib.List className={`mb-3 flex gap-2 rounded-2xl bg-dark-600 p-2 ${className}`}>
         {content.map(({ title, disabled }, index) => (
           <TabsLib.Trigger value={'tab-' + index} key={title + index} disabled={disabled} asChild>
             <div className="outline-none">

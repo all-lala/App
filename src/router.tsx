@@ -7,6 +7,7 @@ import { ChatLibrary } from '~/pages/chat/library';
 import { Dashboard } from '~/pages/dashboard';
 import { Events } from '~/pages/events';
 import type { RouteObject } from 'react-router-dom';
+import { EventListCreate } from './pages/event-list/create';
 
 export const chatRouter: RouteObject[] = [
   {
@@ -45,6 +46,13 @@ export const eventRoutes: RouteObject[] = [
   },
 ];
 
+export const eventListRoutes: RouteObject[] = [
+  {
+    path: '/event-list/create',
+    element: <EventListCreate />,
+  },
+];
+
 export const embedRoutes: RouteObject[] = [
   {
     path: '/chats/:id/embed',
@@ -52,4 +60,8 @@ export const embedRoutes: RouteObject[] = [
   },
 ];
 
-export const routes: RouteObject[] = [...chatRouter, ...eventRoutes /*...alertRoutes*/];
+export const routes: RouteObject[] = [
+  ...chatRouter,
+  ...eventRoutes,
+  ...eventListRoutes /*...alertRoutes*/,
+];

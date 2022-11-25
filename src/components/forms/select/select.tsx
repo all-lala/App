@@ -1,5 +1,5 @@
 import './select.scss';
-import ReactSelect, { SingleValue } from 'react-select';
+import ReactSelect, { MultiValue, SingleValue } from 'react-select';
 import { Label } from '~/components/forms/label/label';
 
 export enum SelectState {
@@ -10,7 +10,11 @@ export enum SelectState {
 
 export interface SelectProps {
   options: { value: string; label: string }[];
-  onChange?: (value: SingleValue<{ value: string; label: string }>) => void;
+  onChange?: (
+    value:
+      | SingleValue<{ value: string; label: string }>
+      | MultiValue<{ value: string; label: string }>
+  ) => void;
   placeholder?: string;
   state?: SelectState;
   label?: string;
@@ -19,6 +23,7 @@ export interface SelectProps {
   errorMessage?: string;
   disabled?: boolean;
   defaultValue?: { value: string; label: string };
+  multiple?: boolean;
 }
 
 export const Select = (props: SelectProps) => {
@@ -33,14 +38,23 @@ export const Select = (props: SelectProps) => {
     errorMessage,
     disabled = false,
     defaultValue,
+    multiple = false,
   } = props;
 
-  const [val, setVal] = useState<SingleValue<{
-    value: string;
-    label: string;
-  }> | null>(null);
+  const [val, setVal] = useState<
+    | SingleValue<{
+        value: string;
+        label: string;
+      }>
+    | MultiValue<{ value: string; label: string }>
+    | null
+  >(null);
 
-  const handleChange = (value: SingleValue<{ value: string; label: string }>) => {
+  const handleChange = (
+    value:
+      | SingleValue<{ value: string; label: string }>
+      | MultiValue<{ value: string; label: string }>
+  ) => {
     setVal(value);
     onChange && onChange(value);
   };
@@ -60,6 +74,7 @@ export const Select = (props: SelectProps) => {
       {label && <Label className={labelClassName}>{label}</Label>}
       <ReactSelect
         options={options}
+        isMulti={multiple}
         classNamePrefix="select"
         className={`${hasValueClassName} ${isDisabledClassName} ${stateClassName[state]} ${className}`}
         onChange={handleChange}
