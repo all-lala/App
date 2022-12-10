@@ -12,11 +12,11 @@ import { embedRoutes, routes } from '~/router';
 import { useAuthUser } from './hooks/auth/use-auth-user';
 
 export const App = () => {
-  const { status } = useAuthCheck();
+  const { data, status } = useAuthCheck();
   const location = useLocation();
   const navigate = useNavigate();
   const online = useOnline();
-  const { data: user } = useAuthUser();
+  const { data: user } = useAuthUser({ enabled: data?.authenticated });
   const redirect = localStorage.getItem('redirectPath');
 
   useEffect(() => {

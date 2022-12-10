@@ -11,7 +11,7 @@ export function useLogout() {
     },
     {
       onSuccess() {
-        void queryClient.invalidateQueries(authKeys.root);
+        void queryClient.invalidateQueries(authKeys.check());
         void queryClient.setQueryData(authKeys.user(), null);
       },
     }

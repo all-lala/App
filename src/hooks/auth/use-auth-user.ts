@@ -3,7 +3,7 @@ import { authKeys } from '~/hooks/query-keys';
 import { AuthUserSchema } from '~/types/schemas/auth';
 import { apiClient } from '~/utils/axios/axios';
 
-export function useAuthUser() {
+export function useAuthUser({ enabled = false } = {}) {
   return useQuery({
     queryKey: authKeys.user(),
     queryFn: async () => {
@@ -12,5 +12,6 @@ export function useAuthUser() {
       return AuthUserSchema.parse(response.data);
     },
     staleTime: Infinity,
+    enabled,
   });
 }
