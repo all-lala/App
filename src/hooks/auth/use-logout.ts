@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { authKeys } from '~/hooks/query-keys';
 import { apiClient } from '~/utils/axios/axios';
@@ -11,6 +12,7 @@ export function useLogout() {
     },
     {
       onSuccess() {
+        Sentry.setUser(null);
         void queryClient.invalidateQueries(authKeys.check());
         void queryClient.setQueryData(authKeys.user(), null);
       },
