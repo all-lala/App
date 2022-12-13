@@ -63,7 +63,7 @@ export const EventMessageToText = (message: string, event: BaseEvent) => {
     const payload = event.payload as RaidEvent;
     return message
       .replaceAll('{{pseudo}}', payload.displayName)
-      .replaceAll('{{amount}}', payload.viewers.toString())
+      .replaceAll('{{viewers}}', payload.viewers.toString())
       .replaceAll(regex, '<span>$1</span>');
   }
 
