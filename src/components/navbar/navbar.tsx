@@ -52,7 +52,7 @@ export const Navbar = (props: NavbarProps) => {
             <Link
               to={item.link}
               key={index}
-              className="group flex items-center gap-2 text-sm font-bold"
+              className="group flex items-center gap-2 text-base font-bold"
             >
               <Icon
                 name={item.icon}
