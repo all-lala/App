@@ -92,15 +92,14 @@ export const HypeTrainEndEventSchema = z.object({
   level: z.number(),
   total: z.number(),
   topContributions: z.array(z.record(z.string(), z.string().or(z.number()))),
-  lastContribution: z.record(z.string(), z.string().or(z.number())).optional(),
-  startedAt: z.string(),
-  expiresAt: z.string(),
+  lastContribution: z.record(z.string(), z.string().or(z.number())).nullable(),
+  endedAt: z.string(),
   cooldownEndsAt: z.string(),
 });
 
 export const GoalBeginEventSchema = z.object({
   type: z.nativeEnum(GoalType),
-  description: z.string(),
+  description: z.string().nullable(),
   currentAmount: z.number(),
   targetAmount: z.number(),
   startedAt: z.string(),
@@ -123,11 +122,10 @@ export const EventSchema = z.object({
   payload: z.union([
     CheerEventSchema,
     SubscriptionMessageEventSchema,
-    SubscriptionGiftEventSchema,
-    RaidEventSchema,
-    HypeTrainBeginEventSchema,
-    //HypeTrainProgressEventSchema,
     HypeTrainEndEventSchema,
+    HypeTrainBeginEventSchema,
+    RaidEventSchema,
+    SubscriptionGiftEventSchema,
     GoalBeginEventSchema,
     GoalEndEventSchema,
     FollowEventSchema,
