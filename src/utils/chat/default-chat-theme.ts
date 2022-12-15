@@ -4,7 +4,7 @@ export const defaultChatTheme: Omit<ChatTheme, 'user_id' | 'id'> | ChatTheme = {
   title: 'Chat theme title',
   global: {
     space_between_messages: 24,
-    alignment: 'left',
+    alignment: 'right',
     layout: 'stack',
     order: [
       { id: 'name', name: 'Name' },
