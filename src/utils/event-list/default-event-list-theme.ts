@@ -65,7 +65,7 @@ export const defaultEventListTheme: EventList = {
       },
       raid: {
         name: 'Raid',
-        message: '**{{pseudo}}** raided the channel with **{{amount}}** viewers!',
+        message: '**{{pseudo}}** raided the channel with **{{viewers}}** viewers!',
       },
       hype_train_begin: {
         name: 'Hype Train Begin',
