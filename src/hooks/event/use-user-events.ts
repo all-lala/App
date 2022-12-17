@@ -17,5 +17,6 @@ export const useUserEvent = () => {
       return z.array(EventSchema).parse(data);
     },
     staleTime: Infinity,
+    refetchInterval: 1000 * 60,
   });
 };
