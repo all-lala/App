@@ -92,18 +92,16 @@ export const Event = (props: EventProps) => {
   return (
     <>
       <div className="flex w-full items-center divide-x divide-dark-300 border-b border-dark-300 bg-dark-400 py-2 first-of-type:rounded-t-lg last-of-type:rounded-b-lg last-of-type:border-b-0">
-        <span className="inline-flex h-full items-center px-3 text-xxs font-bold uppercase text-white">
+        <span className="inline-flex h-full items-center px-3 font-bold uppercase text-white">
           {EventTypeText[event.type]}
         </span>
-        <div className="w-9 shrink-0 text-center text-xs text-dark-100">
-          {HumanDate(event.created_at)}
-        </div>
-        <div className="px-3 text-xs">
+        <div className="w-9 shrink-0 text-center text-dark-100">{HumanDate(event.created_at)}</div>
+        <div className="px-3">
           {EventTypeMessage[event.type](event.payload as any)}
           {'message' in event.payload && event.payload.message && (
             <div className="mt-1 text-light-200">
               <p
-                className="event inline w-full text-xs"
+                className="event inline w-full"
                 dangerouslySetInnerHTML={{
                   __html: `"${event.payload.message.replaceAll(':scale:', '1.0')}"`,
                 }}
