@@ -129,7 +129,7 @@ export const EventListEmbed = () => {
 
   return (
     <div className="flex h-screen flex-1 flex-col items-end justify-end">
-      {events.map((event) => {
+      {events.map((event, i) => {
         const eventsActivate = theme.theme.events_activate.map((e) => {
           return {
             label: e.label,
@@ -138,7 +138,7 @@ export const EventListEmbed = () => {
         });
         if (eventsActivate.find((e) => e.value === event.type)) {
           return (
-            <AnimatePresence key={event.id}>
+            <AnimatePresence key={`${event.id}-${i}`}>
               <EventListItem
                 theme={theme.theme}
                 name={

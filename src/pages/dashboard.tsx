@@ -126,6 +126,10 @@ export const Dashboard = () => {
     }
   }, [events]);
 
+  const filteredEvent = allEvents
+    ?.filter((e) => checkedEvents.map((c) => c.type).includes(e.type) && !e.replayed)
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
   return (
     <div className="grid grid-cols-2 gap-10 p-10">
       <div>
@@ -159,13 +163,9 @@ export const Dashboard = () => {
         </div>
 
         <div className="custom-scrollbar max-h-[calc(100vh_-_367px)] flex-1 overflow-y-auto rounded-lg pr-2">
-          {allEvents
-            ?.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-            .map((event) => {
-              if (checkedEvents.find((e) => e.type === event.type)) {
-                return <Event key={event.id} event={event} />;
-              }
-            })}
+          {filteredEvent.map((event) => (
+            <Event key={event.id} event={event} />
+          ))}
         </div>
       </div>
       <div className="flex h-[calc(100vh_-_80px)] flex-1 flex-col gap-10">

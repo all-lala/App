@@ -130,6 +130,7 @@ export const EventSchema = z.object({
     GoalEndEventSchema,
     FollowEventSchema,
   ]),
+  replayed: z.boolean().optional(),
 });
 
 export type FollowEvent = z.infer<typeof FollowEventSchema>;
