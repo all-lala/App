@@ -38,6 +38,13 @@ export const labelKeys = {
   info: (userId: string) => [...labelKeys.root, 'info', userId] as const,
 };
 
+export const fileKeys = {
+  root: ['file'] as const,
+  lists: () => [...fileKeys.root, 'lists'] as const,
+  details: () => [...fileKeys.root, 'details'] as const,
+  detail: (id: string) => [...fileKeys.details(), id] as const,
+};
+
 export const queryKeys = {
   lottie: (url?: string) => ['lottie', url] as const,
   googleFont: () => ['googleFont'] as const,
