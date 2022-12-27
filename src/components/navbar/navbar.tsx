@@ -6,6 +6,7 @@ import { PopoverLink, PopoverNavigation } from '~/components/popover/navigation/
 import { Popover } from '~/components/popover/popover';
 import { useAuthUser } from '~/hooks/auth/use-auth-user';
 import { useLogout } from '~/hooks/auth/use-logout';
+import MediaLibrary from '../medias/media-library/media-library';
 
 export type NavigationItem = {
   icon: string;
@@ -65,18 +66,34 @@ export const Navbar = (props: NavbarProps) => {
           ))}
         </div>
       </div>
-      <div className="flex flex-shrink-0">
-        {user && (
-          <Popover
-            open={userNavOpen}
-            onOpenChange={setUserNavOpen}
-            trigger={<Avatar className="cursor-pointer" size={45} src={user.avatar_url} />}
-            side="right"
-            align="end"
-          >
-            <PopoverNavigation links={userNavigation} onLinkClick={() => setUserNavOpen(false)} />
-          </Popover>
-        )}
+      <div className="flex w-full flex-shrink-0 flex-col items-end gap-2">
+        <div className="flex w-full flex-col items-end">
+          <MediaLibrary
+            trigger={
+              <p className="group flex cursor-pointer items-center gap-2 text-base font-bold">
+                <Icon
+                  name="folders-line"
+                  className={`transition-colors duration-200 group-hover:text-primary-500`}
+                />
+                <span>Medias</span>
+              </p>
+            }
+            title="Media library"
+          />
+        </div>
+        <div className="flex w-full justify-end">
+          {user && (
+            <Popover
+              open={userNavOpen}
+              onOpenChange={setUserNavOpen}
+              trigger={<Avatar className="cursor-pointer" size={45} src={user.avatar_url} />}
+              side="right"
+              align="end"
+            >
+              <PopoverNavigation links={userNavigation} onLinkClick={() => setUserNavOpen(false)} />
+            </Popover>
+          )}
+        </div>
       </div>
     </div>
   );

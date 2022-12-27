@@ -1,3 +1,4 @@
+import { Button, ButtonSize } from '~/components/button/button';
 import { FileItem } from '~/types/schemas/file';
 import { FileTypeToTag } from '~/utils/common/file-type-to-tag';
 
@@ -12,17 +13,22 @@ const MediaItem = (props: MediaItemProps) => {
   const thumbnailContent = () => {
     switch (file.type) {
       case 0:
-        return <img src={'http://localhost:3000' + file.file.url} />;
+        return <img src={import.meta.env.VITE_API_URL + file.file.url} />;
       case 1:
-        return <video src={'http://localhost:3000' + file.file.url} />;
+        return <video src={import.meta.env.VITE_API_URL + file.file.url} />;
       case 2:
-        return <audio src={'http://localhost:3000' + file.file.url} controls></audio>;
+        return <audio src={import.meta.env.VITE_API_URL + file.file.url} controls></audio>;
     }
   };
 
   return (
     <div onClick={() => onClickSelect && onClickSelect(file)} className="group cursor-pointer">
-      <div className="flex h-36 w-full items-center justify-center overflow-hidden rounded-t-lg border-2 border-dark-400 bg-black transition-colors duration-300 group-hover:border-white">
+      <div className="relative flex h-36 w-full items-center justify-center overflow-hidden rounded-t-lg border-2 border-dark-400 bg-black transition-colors duration-300 group-hover:border-white">
+        <Button
+          className="absolute top-2 right-2"
+          buttonIcon="delete-bin-line"
+          size={ButtonSize.Small}
+        />
         {thumbnailContent()}
       </div>
       <div className="rounded-b-lg bg-dark-400 p-2 transition-colors duration-300 group-hover:bg-white">
