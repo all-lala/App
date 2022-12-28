@@ -21,6 +21,7 @@ export const EventListCreate = () => {
     label: EventTypeDict.get(EventType.Follow)!.label,
     value: `${EventType.Follow}`,
   });
+  const [messagesPerMinute, setMessagesPerMinute] = useState<number>(60);
   const navigate = useNavigate();
 
   const { handleSubmit, control, setValue, watch } = useForm({
@@ -184,8 +185,15 @@ export const EventListCreate = () => {
           />
         </div>
 
-        <DemoContainer>
-          <EventListDemo theme={theme} chosenEvents={chosenEvents} />
+        <DemoContainer
+          messagesPerMinute={messagesPerMinute}
+          onMessagesPerMinuteChange={setMessagesPerMinute}
+        >
+          <EventListDemo
+            theme={theme}
+            chosenEvents={chosenEvents}
+            messagesPerMinute={messagesPerMinute}
+          />
         </DemoContainer>
       </div>
     </>

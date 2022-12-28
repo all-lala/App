@@ -9,6 +9,7 @@ import { EventTypeWithoutHypeTrainProgress } from '~/types/types/event-list';
 type EventListDemoProps = {
   theme: EventList;
   chosenEvents: EventTypeWithoutHypeTrainProgress[];
+  messagesPerMinute?: number;
 };
 
 const eventType = {
@@ -24,25 +25,30 @@ const eventType = {
 };
 
 const EventListDemo = (props: EventListDemoProps) => {
-  const { theme, chosenEvents } = props;
+  const { theme, chosenEvents, messagesPerMinute } = props;
 
   const [events, setEvents] = useState<BaseEvent[]>([]);
 
   useEffect(() => {
-    const interval = setInterval(
-      () =>
-        setEvents((d) => {
-          if (d.length >= 50) d.shift();
-          const newEvent: BaseEvent = fakeEvent(
-            chosenEvents[Math.floor(Math.random() * chosenEvents.length)]
+    const timeInterval = messagesPerMinute === undefined ? 1250 : 60000 / messagesPerMinute;
+
+    const interval =
+      timeInterval === Infinity
+        ? undefined
+        : setInterval(
+            () =>
+              setEvents((d) => {
+                if (d.length >= 50) d.shift();
+                const newEvent: BaseEvent = fakeEvent(
+                  chosenEvents[Math.floor(Math.random() * chosenEvents.length)]
+                );
+                return [...d, newEvent];
+              }),
+            timeInterval
           );
-          return [...d, newEvent];
-        }),
-      1250
-    );
 
     return () => clearInterval(interval);
-  }, [chosenEvents]);
+  }, [chosenEvents, messagesPerMinute]);
 
   return (
     <>

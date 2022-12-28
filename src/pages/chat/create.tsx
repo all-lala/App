@@ -10,6 +10,7 @@ import type { ChatTheme } from '~/types/schemas/chat';
 
 export const ChatCreate = () => {
   const [settings, setSettings] = useState(defaultChatTheme);
+  const [messagesPerMinute, setMessagesPerMinute] = useState<number>(60);
   const navigate = useNavigate();
 
   const { mutate: createChat } = useCreateChat();
@@ -71,8 +72,11 @@ export const ChatCreate = () => {
               }}
             />
           </div>
-          <DemoContainer>
-            <ChatDemo settings={settings} />
+          <DemoContainer
+            messagesPerMinute={messagesPerMinute}
+            onMessagesPerMinuteChange={setMessagesPerMinute}
+          >
+            <ChatDemo settings={settings} messagesPerMinute={messagesPerMinute} />
           </DemoContainer>
         </div>
       </div>
